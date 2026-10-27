@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://2bsx2c2qkdff"]
+
+[ext_resource type="Script" uid="uid://ciso4jiamd5xa" path="res://Scripts/Puzzles/Button/button.gd" id="1_iaa8w"]
+[ext_resource type="Texture2D" uid="uid://ct42y11h4nq5s" path="res://Sprites/Puzzles/Button/ButtonUp.png" id="2_gxmq6"]
+[ext_resource type="AudioStream" uid="uid://jjhy582a01m0" path="res://Sounds/Level/Door.wav" id="3_gxmq6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkb1b"]
+size = Vector2(91.5, 87)
+
+[node name="Button" type="Area2D"]
+script = ExtResource("1_iaa8w")
+
+[node name="Up" type="Sprite2D" parent="."]
+position = Vector2(-0.88066477, -0.89560694)
+rotation = -0.0018661033
+scale = Vector2(3.5, 4)
+texture = ExtResource("2_gxmq6")
+
+[node name="Down" type="Sprite2D" parent="."]
+position = Vector2(-0.88066477, -0.89560694)
+rotation = -0.0018661033
+scale = Vector2(3.5, 4)
+texture = ExtResource("2_gxmq6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 32)
+shape = SubResource("RectangleShape2D_jkb1b")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gxmq6")

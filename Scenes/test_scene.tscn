@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjx7p3s4brtwl"]
+
+[ext_resource type="PackedScene" uid="uid://cnfx5nbwfow1a" path="res://Scenes/PlayerScene/player.tscn" id="1_3dogw"]
+[ext_resource type="PackedScene" uid="uid://2bsx2c2qkdff" path="res://Scenes/Puzzles/Button/button.tscn" id="2_x033f"]
+[ext_resource type="PackedScene" uid="uid://b7hd61woy6to6" path="res://Scenes/Puzzles/ConveyorBelt/conveyor_belt.tscn" id="3_rdbpf"]
+[ext_resource type="PackedScene" uid="uid://nswq36r860ua" path="res://Scenes/Puzzles/Door/door.tscn" id="4_oho3u"]
+[ext_resource type="PackedScene" uid="uid://dkfe7p8fdvfi5" path="res://Scenes/Puzzles/DoorLight/light.tscn" id="5_d3awe"]
+[ext_resource type="PackedScene" uid="uid://bjgp05yq25xvq" path="res://Scenes/Puzzles/Lever/lever.tscn" id="6_yglu3"]
+[ext_resource type="PackedScene" uid="uid://dfr47jugccxs0" path="res://Scenes/Goal/goal.tscn" id="7_rdbpf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ia5b"]
+size = Vector2(66.74101, 40)
+
+[node name="TestStuff" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-1, 606)
+scale = Vector2(28.882555, 1)
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(33.347958, 22)
+shape = SubResource("RectangleShape2D_2ia5b")
+
+[node name="Button" parent="." instance=ExtResource("2_x033f")]
+position = Vector2(127, 544)
+
+[node name="ConveyorBelt" parent="." instance=ExtResource("3_rdbpf")]
+position = Vector2(385, 528)
+
+[node name="Door" parent="." instance=ExtResource("4_oho3u")]
+position = Vector2(18, 542)
+
+[node name="Light" parent="." instance=ExtResource("5_d3awe")]
+position = Vector2(86, 519)
+
+[node name="Lever" parent="." instance=ExtResource("6_yglu3")]
+position = Vector2(108, 431)
+
+[node name="Goal" parent="." instance=ExtResource("7_rdbpf")]
+position = Vector2(178, -11)
+scale = Vector2(2, 2)
+next_level = "uid://40hx44sd5un0"
+
+[node name="ConveyorBelt2" parent="." instance=ExtResource("3_rdbpf")]
+position = Vector2(546, 528)
+
+[node name="Player" parent="." instance=ExtResource("1_3dogw")]
+position = Vector2(611, 215)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(540, 292.00003)
+scale = Vector2(4.3682604, 0.76268625)
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(33.347958, 22)
+shape = SubResource("RectangleShape2D_2ia5b")
+
+[node name="ConveyorBelt3" parent="." instance=ExtResource("3_rdbpf")]
+position = Vector2(707, 528)

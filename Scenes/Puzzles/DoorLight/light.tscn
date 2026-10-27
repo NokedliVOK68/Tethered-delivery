@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkfe7p8fdvfi5"]
+
+[ext_resource type="Script" uid="uid://dpm787q1n7dcg" path="res://Scripts/Puzzles/DoorLight/light.gd" id="1_q8obd"]
+[ext_resource type="Texture2D" uid="uid://gtt53l5p8n4t" path="res://Sprites/Puzzles/DoorLight/GreenLights.png" id="2_e2tov"]
+[ext_resource type="Texture2D" uid="uid://bvv6re8fmudhn" path="res://Sprites/Puzzles/DoorLight/RedLight.png" id="3_iaid6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iw4ir"]
+size = Vector2(40, 58)
+
+[node name="Light" type="Area2D"]
+script = ExtResource("1_q8obd")
+
+[node name="On" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_e2tov")
+
+[node name="Off" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("3_iaid6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_iw4ir")

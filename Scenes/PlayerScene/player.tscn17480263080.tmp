@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://cnfx5nbwfow1a"]
+
+[ext_resource type="Script" uid="uid://cexkfh3inwso" path="res://Scripts/Player/player.gd" id="1_44xdq"]
+[ext_resource type="Texture2D" uid="uid://bpmr7d2r45fvv" path="res://icon.svg" id="1_e30bl"]
+[ext_resource type="Script" uid="uid://b2j5r3v83rum1" path="res://Scripts/Player/line_2d.gd" id="3_kbykq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e30bl"]
+size = Vector2(63, 127)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_44xdq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44xdq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kbykq"]
+friction = 0.2
+bounce = 0.4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbykq"]
+size = Vector2(64, 64)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("box")]
+script = ExtResource("1_44xdq")
+speed = null
+jump = null
+box = NodePath("Box")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 1)
+texture = ExtResource("1_e30bl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e30bl")
+
+[node name="AnchorPoint" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_44xdq")
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnchorPoint"]
+position = Vector2(0, 22)
+shape = SubResource("RectangleShape2D_44xdq")
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+rotation = -1.5707964
+node_a = NodePath("../AnchorPoint")
+node_b = NodePath("../Box")
+disable_collision = false
+length = 200.0
+
+[node name="Line2D" type="Line2D" parent="DampedSpringJoint2D" node_paths=PackedStringArray("player", "box")]
+z_index = -1
+position = Vector2(3, 1.3113416e-07)
+script = ExtResource("3_kbykq")
+player = NodePath("../..")
+box = NodePath("../../Box")
+
+[node name="Box" type="RigidBody2D" parent="."]
+position = Vector2(202, 1)
+collision_layer = 2
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_kbykq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Box"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_e30bl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
+shape = SubResource("RectangleShape2D_kbykq")
+
+[node name="HoldPos2D" type="Marker2D" parent="."]
+position = Vector2(0, -82)

@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://baraqq7kvpg5y"]
+
+[ext_resource type="Script" uid="uid://wiyd2ccs3ia1" path="res://Scripts/Player/playertest.gd" id="1_44xdq"]
+[ext_resource type="Texture2D" uid="uid://bpmr7d2r45fvv" path="res://icon.svg" id="1_e30bl"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kbykq"]
+friction = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e30bl"]
+size = Vector2(63, 128)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_44xdq"]
+friction = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44xdq"]
+
+[node name="Player" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_kbykq")
+gravity_scale = 2.0
+lock_rotation = true
+script = ExtResource("1_44xdq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 1)
+texture = ExtResource("1_e30bl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_e30bl")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+node_b = NodePath("../RigidBody2D")
+softness = 1.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+z_index = -1
+position = Vector2(141, 1)
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_44xdq")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_e30bl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_44xdq")

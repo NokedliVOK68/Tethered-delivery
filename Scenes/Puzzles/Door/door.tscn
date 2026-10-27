@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://nswq36r860ua"]
+
+[ext_resource type="Texture2D" uid="uid://b4irf4v3ewwu2" path="res://Sprites/Puzzles/Door/Door.png" id="1_qx7mf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8hha"]
+size = Vector2(7, 41)
+
+[node name="Door" type="Node2D"]
+position = Vector2(1, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-1, -2)
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_qx7mf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_v8hha")

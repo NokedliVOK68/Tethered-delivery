@@ -1,0 +1,181 @@
+[gd_scene load_steps=26 format=3 uid="uid://cnfx5nbwfow1a"]
+
+[ext_resource type="Script" uid="uid://cexkfh3inwso" path="res://Scripts/Player/player.gd" id="1_44xdq"]
+[ext_resource type="Texture2D" uid="uid://doac4wetvdd2d" path="res://Sprites/Player/Fall/PlayerFall.png" id="2_eq1ot"]
+[ext_resource type="Texture2D" uid="uid://3t7ukm16braj" path="res://Sprites/Player/Idle/PlayerIdle2.png" id="2_iapnc"]
+[ext_resource type="Texture2D" uid="uid://c11ijog7ll6tp" path="res://Sprites/Player/Hold/PlayerHold.png" id="2_n6xb4"]
+[ext_resource type="Texture2D" uid="uid://d1sdrgqd673o0" path="res://Sprites/Player/Idle/PlayerIdle3.png" id="3_b6ui3"]
+[ext_resource type="Script" uid="uid://b2j5r3v83rum1" path="res://Scripts/Player/line_2d.gd" id="3_kbykq"]
+[ext_resource type="Texture2D" uid="uid://b505mb6nauccw" path="res://Sprites/Player/Idle/PlayerIdle.png" id="4_wixdc"]
+[ext_resource type="Texture2D" uid="uid://lchod00c1r6q" path="res://Sprites/Player/Pull/PlayerPull1.png" id="6_eq1ot"]
+[ext_resource type="Texture2D" uid="uid://cc2mmus4uq3fr" path="res://Sprites/Player/Pull/PlayerPull2.png" id="7_hb861"]
+[ext_resource type="Texture2D" uid="uid://c1km4a2boqs2i" path="res://Sprites/Player/Pull/PlayerPull3.png" id="8_tbpob"]
+[ext_resource type="Texture2D" uid="uid://cqvyt1kgjancq" path="res://Sprites/Player/Pull/PlayerPull4.png" id="9_icw8t"]
+[ext_resource type="Texture2D" uid="uid://bmnrsvb1y6ccx" path="res://Sprites/Player/Run/PlayerRun1.png" id="10_oidkq"]
+[ext_resource type="Texture2D" uid="uid://cva0je0js1ih8" path="res://Sprites/Player/Run/PlayerRun2.png" id="11_1o5fo"]
+[ext_resource type="Texture2D" uid="uid://cm3w4erh7y5gm" path="res://Sprites/Player/Run/PlayerRun3.png" id="12_dt7c8"]
+[ext_resource type="Texture2D" uid="uid://c47ik1iktks2k" path="res://Sprites/Player/Run/PlayerRun4.png" id="13_1t52c"]
+[ext_resource type="Texture2D" uid="uid://cfsfse0eps0xg" path="res://Sprites/Box/Box.png" id="16_eq1ot"]
+[ext_resource type="Texture2D" uid="uid://bipys32soh8ul" path="res://Sprites/Player/Arrow/ArrowUnder.png" id="17_tbpob"]
+[ext_resource type="Texture2D" uid="uid://crb8wuad27fpa" path="res://Sprites/Player/Arrow/ArrowOver.png" id="18_icw8t"]
+[ext_resource type="Script" uid="uid://b6t2v74sfggtb" path="res://Scenes/PlayerScene/progress_bar.gd" id="19_icw8t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w36b4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_eq1ot")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n6xb4")
+}],
+"loop": true,
+"name": &"Hold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_iapnc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b6ui3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wixdc")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_eq1ot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hb861")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tbpob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_icw8t")
+}],
+"loop": true,
+"name": &"Pull",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_oidkq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1o5fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dt7c8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1t52c")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e30bl"]
+size = Vector2(63, 127)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_44xdq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44xdq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kbykq"]
+friction = 0.2
+bounce = 0.4
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbykq"]
+size = Vector2(41.75, 33)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("box")]
+scale = Vector2(2, 2)
+script = ExtResource("1_44xdq")
+speed = null
+jump = null
+box = NodePath("Box")
+max_hold_time = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w36b4")
+animation = &"Pull"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_e30bl")
+
+[node name="AnchorPoint" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_44xdq")
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnchorPoint"]
+position = Vector2(0, 22)
+shape = SubResource("RectangleShape2D_44xdq")
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+rotation = -1.5707964
+node_a = NodePath("../AnchorPoint")
+node_b = NodePath("../Box")
+disable_collision = false
+length = 200.0
+
+[node name="Line2D" type="Line2D" parent="DampedSpringJoint2D" node_paths=PackedStringArray("player", "box")]
+z_index = -1
+position = Vector2(3, 1.3113416e-07)
+script = ExtResource("3_kbykq")
+player = NodePath("../..")
+box = NodePath("../../Box")
+
+[node name="Box" type="RigidBody2D" parent="."]
+position = Vector2(203, -12)
+collision_layer = 2
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_kbykq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Box"]
+scale = Vector2(4, 4)
+texture = ExtResource("16_eq1ot")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_kbykq")
+
+[node name="HoldPos2D" type="Marker2D" parent="."]
+position = Vector2(0, -32)
+
+[node name="ProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("player")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -32.0
+offset_right = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+max_value = 1.0
+step = 0.0
+texture_under = ExtResource("17_tbpob")
+texture_progress = ExtResource("18_icw8t")
+script = ExtResource("19_icw8t")
+player = NodePath("..")
