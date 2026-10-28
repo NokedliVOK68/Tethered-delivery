@@ -22,6 +22,10 @@ window/size/viewport_height=1080
 window/size/resizable=false
 window/size/borderless=true
 
+[editor]
+
+movie_writer/movie_file="C:/Users/szeba/OneDrive/Documents/GoDot/Y1/Semester 2/Project3/GPS_ICA_P3_1.5/GPS_ICA_P3_1.5/gps-ica-p-3/Tethered-delivery/Replays/Godot_Replay.avi"
+
 [global_group]
 
 box=""
